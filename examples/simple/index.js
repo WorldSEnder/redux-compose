@@ -1,8 +1,8 @@
 
-var refluct = require('refluct');
+var reduxCompose = require('redux-compose');
 
-var combiner = refluct.default;
-var routeDown = refluct.routeDown;
+var combiner = reduxCompose.default;
+var routeDown = reduxCompose.routeDown;
 
 function reduce(state = 5, action) {
 	if(action.type == 'ADD') {

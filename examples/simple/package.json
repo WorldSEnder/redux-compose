@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "refluct": "file:///home/martin/recreational/refluct"
+    "refluct": "file:///home/martin/recreational/redux-compose"
   }
 }

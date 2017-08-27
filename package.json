@@ -1,8 +1,8 @@
 {
-  "name": "refluct",
+  "name": "redux-compose",
   "version": "1.0.0",
-  "description": "Connects react and redux",
-  "main": "lib/refluct.js",
+  "description": "Redux with routed actions",
+  "main": "lib/redux-compose.js",
   "scripts": {
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build": "npm run build:commonjs",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/WorldSEnder/reflux.git"
+    "url": "https://github.com/WorldSEnder/redux-compose.git"
   },
   "files": [
     "src",
@@ -21,9 +21,9 @@
   "author": "WorldSEnder",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/WorldSEnder/reflux/issues"
+    "url": "https://github.com/WorldSEnder/redux-compose/issues"
   },
-  "homepage": "https://github.com/WorldSEnder/reflux#readme",
+  "homepage": "https://github.com/WorldSEnder/redux-compose#readme",
   "peerDependencies": {
     "redux": "^3.0.0"
   },
