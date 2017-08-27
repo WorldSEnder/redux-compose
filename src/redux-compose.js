@@ -20,6 +20,10 @@ function defaultRerouter(state = {}, action, routes) {
 	return [state, Object.assign({}, ...routes.map(r => ({ [r]: action }) ))];
 }
 
+function getOrUndefined(obj, key) {
+	return obj == null ? undefined : obj[key];
+}
+
 export default function reroutingCombiner(reducers, rerouter = defaultRerouter) {
 	const reducerKeys = Object.keys(reducers);
 
@@ -41,6 +45,7 @@ export default function reroutingCombiner(reducers, rerouter = defaultRerouter) 
 	return function reduce(state, action) {
 		// Could return either [modifiedState, reroutings] or just reroutings
 		var [reducedState, reroutings] = rerouter(state, action, finalReducerKeys);
+		// TODO: expect(reducedState !== undefined)
 
 		var reroutedState = {}
 		var reroutedKeys = Object.keys(reroutings);
@@ -50,8 +55,9 @@ export default function reroutingCombiner(reducers, rerouter = defaultRerouter) 
 			if(reducer === undefined) {
 				throw new Error(`Rerouting for "${key}" has no reducer`);
 			}
-			var oldSubState = state[key];
+			var oldSubState = getOrUndefined(state, key);
 			var newSubState = reducer(oldSubState, reroutedAction);
+			// TODO: expect(newSubState !== undefined)
 
 			if(newSubState !== reducedState[key]) {
 				reroutedState[key] = newSubState;
