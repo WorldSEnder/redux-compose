@@ -1,5 +1,5 @@
 
-var reduxCompose = require('redux-compose');
+var reduxCompose = require('redux-composed');
 
 var combiner = reduxCompose.default;
 var routeDown = reduxCompose.routeDown;

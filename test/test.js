@@ -2,8 +2,8 @@ var assert = require('assert');
 
 var createStore = require('redux').createStore;
 
-var compose = require('../lib/redux-compose.js').default;
-var routeDown = require('../lib/redux-compose.js').routeDown;
+var compose = require('../lib/redux-composed.js').default;
+var routeDown = require('../lib/redux-composed.js').routeDown;
 
 function reduce(state = 0, action) {
 	if(action.type === 'ADD') {
