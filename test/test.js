@@ -23,5 +23,11 @@ describe('redux-compose', function() {
 		assert.equal(result.y, 0);
 
 	});
+	it('should distribute non-route-down actions', function() {
+		var initialState = {x: 0, y: 0};
+		var result = app(initialState, add(1));
+		assert.equal(result.x, 1);
+		assert.equal(result.y, 1);
+	});
 });
 

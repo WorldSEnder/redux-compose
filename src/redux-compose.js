@@ -12,12 +12,12 @@ export function routeDown(action, property) {
 	}
 }
 
-function defaultRerouter(state = {}, action) {
+function defaultRerouter(state = {}, action, routes) {
 	if(action.type === ROUTE_DOWN) {
 		var { path, nestedAction } = action;
 		return [state, { [path]: nestedAction }];
 	}
-	return [state, {}];
+	return [state, Object.assign({}, ...routes.map(r => ({ [r]: action }) ))];
 }
 
 export default function reroutingCombiner(reducers, rerouter = defaultRerouter) {
@@ -35,11 +35,12 @@ export default function reroutingCombiner(reducers, rerouter = defaultRerouter) 
 			finalReducers[key] = reducer;
 		}
 	}
-	const finalReducerKeys = Object.keys(reducerKeys);
+	const finalReducerKeys = Object.keys(finalReducers);
+	Object.freeze(finalReducerKeys);
 
 	return function reduce(state, action) {
 		// Could return either [modifiedState, reroutings] or just reroutings
-		var [reducedState, reroutings] = rerouter(state, action);
+		var [reducedState, reroutings] = rerouter(state, action, finalReducerKeys);
 
 		var reroutedState = {}
 		var reroutedKeys = Object.keys(reroutings);
