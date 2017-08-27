@@ -24,6 +24,17 @@ function getOrUndefined(obj, key) {
 	return obj == null ? undefined : obj[key];
 }
 
+/**
+ * Returns a reducer that will call rerouter before deciding on what to do with each event.
+ *
+ * @param {Object} reducers An object whose values correspond to reducers getting combined into one.
+ *
+ * @param {Function} rerouter (state : any, action : Object, routes : [String]) => (reducedState : Object, reroutes : Object)
+ * Given a current state, the action to reroute and an array of possible routes, the function should return an updated state
+ * and an object of reroute. For each property { name: value } in reroutes, reducers[name] will be invoked with value as action.
+ *
+ * If a property is present in reducedState and rerouted, the reroute will take precedence.
+ */
 export default function reroutingCombiner(reducers, rerouter = defaultRerouter) {
 	const reducerKeys = Object.keys(reducers);
 
